@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
-from .models import loggerDB
+from .models import bottlesDB
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -15,7 +15,7 @@ def register(request):
             username = form.cleaned_data.get("username")
             
             #Adding data to logerrer table in database
-            log = loggerDB()
+            log = bottlesDB()
             log.username = form.cleaned_data.get("username")
             log.bottleID = form.cleaned_data.get("bottleID")
             log.save()

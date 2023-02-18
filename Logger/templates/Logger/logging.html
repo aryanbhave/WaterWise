@@ -1,0 +1,12 @@
+{% extends "Logger/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form action="" method="POST">
+    <!-- {% csrf_token %} -->
+    <h4>POST FORM</h4>
+    <input type="search" name="username" placeholder="Type your username">\
+    <input type="search" name="bottleID" placeholder="Type your bottleID">
+    <input type="search" name="measurement" placeholder="Type your measurement">
+    <input type="submit" name="query" placeholder="Submit" onclick="location.href='logger-home';"><br/>
+</form>
+{% endblock content%}
