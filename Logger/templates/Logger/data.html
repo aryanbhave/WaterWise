@@ -1,0 +1,21 @@
+{% extends "Logger/base.html" %}
+{% block content %}
+<table class="table table-borderless table-hover table-responsive">
+    <thead class="table-dark">
+        <tr>
+            <th  scope="col">Bottle ID</th>
+            <th  scope="col">Measurement</th>
+            <th  scope="col">Date and Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in loggingData %}
+            <tr>
+                <td>{{ item.bottleID }}</td>
+                <td>{{ item.measurement }}</td> 
+                <td>{{ item.timeStamp }}</td> 
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content%}

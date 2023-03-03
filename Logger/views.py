@@ -41,3 +41,14 @@ def logging(request):
     else:
         return render(request, 'Logger/logging.html', {'title': 'Failed'})
     
+
+@login_required
+def data(request):
+    # if request.user.is_authenticated():
+    usernameQ = request.user.username
+    context = {
+        "title" : 'Your Data',
+        "loggingData" : loggerDB.objects.all().filter(username=usernameQ).order_by('timeStamp')
+    }
+    return render(request, 'Logger/data.html', context)
+    

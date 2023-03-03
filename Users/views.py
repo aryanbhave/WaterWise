@@ -17,7 +17,7 @@ def register(request):
             #Adding data to logerrer table in database
             log = bottlesDB()
             log.username = form.cleaned_data.get("username")
-            log.bottleID = form.cleaned_data.get("bottleID")
+            log.bottleID = form.cleaned_data.get("bottle_ID")
             log.save()
 
             messages.success(request, f'Your account has been created, you can proceed to login.')
