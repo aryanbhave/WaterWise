@@ -25,3 +25,7 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'Users/register.html', {'form': form})
+
+
+def verification(request):
+    return render(request, 'Users/verification.html')
