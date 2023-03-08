@@ -7,4 +7,4 @@ class bottlesDB(models.Model):
     bottleID=models.CharField(max_length=150)
 
     class Meta:
-        db_table='bottlesDB'
+        db_table='bottlesDB' 
