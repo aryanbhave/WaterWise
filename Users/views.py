@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 from django.core.mail import send_mail
 import random
 import string
@@ -55,10 +56,11 @@ def login(request):
         form = AuthenticationForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             data = authDB.objects.get(username=username)
             if data.isVerified:
+                auth_login(request, user)  
                 return render(request, 'Logger/home.html', {'username': username})
                 # return render(request, 'Logger/home.html')
             else:
