@@ -80,3 +80,12 @@ def send_email(email, username, first_name, optToVerify):
     recipient_list = [email]
     send_mail(subject, message, from_email,
               recipient_list, fail_silently=False)
+
+
+def verifyuser(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        optToVerify = request.POST.get('optToVerify')
+        auth = authDB.objects.get(username=username)
+        #  TODO: Check auth and 
+        return render(request, 'Users/verification.html')

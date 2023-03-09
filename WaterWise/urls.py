@@ -28,5 +28,6 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('login/', user_views.login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='Users/logout.html'), name='logout'),
+    path('verifyuser/', user_views.verifyuser, name='verifyuser'),
     # path('profile/', user_views.profile, name='profile'),
 ]
