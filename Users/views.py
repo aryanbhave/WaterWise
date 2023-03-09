@@ -72,10 +72,9 @@ def login(request):
 
 
 def send_email(email, username, first_name, optToVerify):
-    print(email)
     subject = 'Welcome to WaterWise '+first_name+'!'
     message = 'Thank you for signing up to Waterwise, Your username is '+username + \
-        '\n Please click this link to verify your email.\n http://localhost:8000/verifyuser?username={username}&opt={optToVerify}'
+        '\n Please click this link to verify your email.\n http://localhost:8000/verifyuser?username='+username+'&opt='+optToVerify
     from_email = 'waterwise-noreply@razlator.online'
     recipient_list = [email]
     send_mail(subject, message, from_email,
@@ -83,9 +82,14 @@ def send_email(email, username, first_name, optToVerify):
 
 
 def verifyuser(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        optToVerify = request.POST.get('optToVerify')
+    if request.method == 'GET':
+        username = request.GET.get('username')
+        optToVerify = request.GET.get('opt')
         auth = authDB.objects.get(username=username)
-        #  TODO: Check auth and 
-        return render(request, 'Users/verification.html')
+        if optToVerify == auth.otpToVerify:
+           auth.isVerified = True
+           auth.save()
+           messages.success(request, f'Verificaation successful, try loggining in now')
+        else:
+            messages.error(request, f'something went wrong please contact support')
+    return render(request, 'Users/verification.html')
