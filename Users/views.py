@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import bottlesDB
+from .models import authDB
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -17,8 +18,13 @@ def register(request):
             #Adding data to logerrer table in database
             log = bottlesDB()
             log.username = form.cleaned_data.get("username")
-            log.bottleID = form.cleaned_data.get("bottle_ID")
+            log.bottleID = form.cleaned_data.get("bottleID")
             log.save()
+
+            auth = authDB()
+            auth.username = form.cleaned_data.get("username")
+            auth.isVerified = False
+
 
             messages.success(request, f'Your account has been created, you can proceed to login.')
             return redirect('login')
