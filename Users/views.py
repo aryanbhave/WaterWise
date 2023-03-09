@@ -59,7 +59,8 @@ def login(request):
         if user is not None:
             data = authDB.objects.get(username=username)
             if data.isVerified:
-                return render(request, 'Logger/home.html')
+                return render(request, 'Logger/home.html', {'username': username})
+                # return render(request, 'Logger/home.html')
             else:
                 messages.error(
                     request, f'Please verify account via email before logging in')
