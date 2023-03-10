@@ -8,3 +8,11 @@ class bottlesDB(models.Model):
 
     class Meta:
         db_table='bottlesDB' 
+
+class authDB(models.Model):
+    username=models.CharField(max_length=150)
+    isVerified = models.BooleanField(default=False)
+    otpToVerify =models.CharField(max_length=150)
+
+    class Meta:
+        db_table='authDB' 
