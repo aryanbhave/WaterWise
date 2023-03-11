@@ -25,21 +25,19 @@ def about(request):
 
 @csrf_exempt
 def logging(request):
-    if request.method == "POST":
-        usernameQ = request.POST.get('username', None)
-        bottleIDQ = request.POST.get('bottleID', None)
-        # timeStampQ = request.POST.get('timeStamp', None)
-        measurementQ = request.POST.get('measurement', None)
-
+    if request.method == "GET":
+        usernameQ = request.GET.get('username', None)
+        bottleIDQ = request.GET.get('bottleID', None)
+        measurementQ = request.GET.get('measurement', None)
         #Check if Bottle has been registered to username
         if bottlesDB.objects.all().filter(username=usernameQ, bottleID=bottleIDQ).exists() == True:
             #Add logging information to loggerDB table
             newMeasurement = loggerDB(username=usernameQ, bottleID=bottleIDQ, measurement=measurementQ)
             newMeasurement.save() 
             messages.success(request, f'Logged')
-            return render(request, 'Logger/logging.html', {'title': 'Success'})
+            return HttpResponse("Logged")
     else:
-        return render(request, 'Logger/logging.html', {'title': 'Failed'})
+        return HttpResponse("FailedToLog")
     
 
 @login_required
