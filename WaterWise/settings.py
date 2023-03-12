@@ -138,6 +138,7 @@ STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES = [STATIC_ROOT]
 
+CSRF_TRUSTED_ORIGINS = ['https://*.waterwise315.online/','http://*.waterwise315.online/']
 
 
 # settings.py
