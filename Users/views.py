@@ -92,7 +92,7 @@ def verifyuser(request):
         if optToVerify == auth.otpToVerify:
            auth.isVerified = True
            auth.save()
-           messages.success(request, f'Verificaation successful, try loggining in now')
+           messages.success(request, f'Verification successful, try logging in now')
         else:
-            messages.error(request, f'something went wrong please contact support')
+            messages.error(request, f'Something went wrong please contact support')
     return render(request, 'Users/verification.html')
