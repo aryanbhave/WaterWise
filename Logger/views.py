@@ -6,6 +6,7 @@ from .models import loggerDB
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib import messages
 from django.middleware.csrf import get_token
+import datetime
 
 # Create your views here.
 def home(request):
@@ -44,10 +45,28 @@ def data(request):
     # if request.user.is_authenticated():
     username = request.user.username
     bottles = bottlesDB.objects.all().filter(username=username)
+    loggingData = loggerDB.objects.all().filter(bottleID=bottles[0].bottleID).order_by('timeStamp')
     print(bottles[0].bottleID)
+    data = []
+    pst_tz = datetime.timezone(datetime.timedelta(hours=-7))
+    for item in loggingData:
+     utc_dt = datetime.datetime.utcfromtimestamp(item.timeStamp.timestamp())
+
+        # Create a timezone object for Pacific Standard Time (PST)
+
+        # Convert the UTC datetime to PST
+     pst_dt = utc_dt.replace(tzinfo=datetime.timezone.utc).astimezone(pst_tz)
+
+        # Format the PST datetime as a string
+     pst_str = pst_dt.strftime('%Y-%m-%d %H:%M:%S')
+     data.append({ 'bottleID': item.bottleID, 'measurement': item.measurement, 'timeStamp': pst_str})
     context = {
         "title" : 'Your Data',
-        "loggingData" : loggerDB.objects.all().filter(bottleID=bottles[0].bottleID).order_by('timeStamp')
+        "loggingData" : data
     }
+    # Print the PST datetime string
+
+# Print the PST datetime string
+    print(pst_str)
     return render(request, 'Logger/data.html', context)
     
