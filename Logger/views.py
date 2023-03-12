@@ -26,13 +26,12 @@ def about(request):
 @csrf_exempt
 def logging(request):
     if request.method == "GET":
-        usernameQ = request.GET.get('username', None)
         bottleIDQ = request.GET.get('bottleID', None)
         measurementQ = request.GET.get('measurement', None)
         #Check if Bottle has been registered to username
-        if bottlesDB.objects.all().filter(username=usernameQ, bottleID=bottleIDQ).exists() == True:
+        if bottlesDB.objects.all().filter(bottleID=bottleIDQ).exists() == True:
             #Add logging information to loggerDB table
-            newMeasurement = loggerDB(username=usernameQ, bottleID=bottleIDQ, measurement=measurementQ)
+            newMeasurement = loggerDB(bottleID=bottleIDQ, measurement=measurementQ)
             newMeasurement.save() 
             messages.success(request, f'Logged')
             return HttpResponse("Logged")
