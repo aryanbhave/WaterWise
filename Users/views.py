@@ -77,7 +77,7 @@ def login(request):
 def send_email(email, username, first_name, optToVerify):
     subject = 'Welcome to WaterWise '+first_name+'!'
     message = 'Thank you for signing up to Waterwise, Your username is '+username + \
-        '\n Please click this link to verify your email.\n http://localhost:8000/verifyuser?username='+username+'&opt='+optToVerify
+        '\n Please click this link to verify your email.\n http://waterwise315.online/verifyuser?username='+username+'&opt='+optToVerify
     from_email = 'waterwise-noreply@razlator.online'
     recipient_list = [email]
     send_mail(subject, message, from_email,
