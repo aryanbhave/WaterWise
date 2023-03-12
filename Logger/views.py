@@ -42,10 +42,12 @@ def logging(request):
 @login_required
 def data(request):
     # if request.user.is_authenticated():
-    usernameQ = request.user.username
+    username = request.user.username
+    bottles = bottlesDB.objects.all().filter(username=username)
+    print(bottles[0].bottleID)
     context = {
         "title" : 'Your Data',
-        "loggingData" : loggerDB.objects.all().filter(username=usernameQ).order_by('timeStamp')
+        "loggingData" : loggerDB.objects.all().filter(bottleID=bottles[0].bottleID).order_by('timeStamp')
     }
     return render(request, 'Logger/data.html', context)
     
