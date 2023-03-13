@@ -67,6 +67,5 @@ def data(request):
     # Print the PST datetime string
 
 # Print the PST datetime string
-    print(pst_str)
     return render(request, 'Logger/data.html', context)
     
