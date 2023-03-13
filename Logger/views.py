@@ -58,7 +58,7 @@ def data(request):
      pst_dt = utc_dt.replace(tzinfo=datetime.timezone.utc).astimezone(pst_tz)
 
         # Format the PST datetime as a string
-     pst_str = pst_dt.strftime('%Y-%m-%d %H:%M:%S')
+     pst_str = pst_dt.strftime('%I:%M %p, %d %b, %Y')
      data.append({ 'bottleID': item.bottleID, 'measurement': item.measurement, 'timeStamp': pst_str})
     context = {
         "title" : 'Your Data',
