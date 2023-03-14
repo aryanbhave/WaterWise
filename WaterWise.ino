@@ -114,6 +114,7 @@ void loop()
         if (measurement - prevMeasurement >= 20.0)
         {
           prevMeasurement = measurement;
+          timer = millis();
         }
         // Water used
         else if (prevMeasurement - measurement >= 20.0)
@@ -126,11 +127,12 @@ void loop()
           ledControl(false);
         }
         // callWeb2();
-      }
-      if(millis() > timer + millisecondsToNotify){
+          if(millis() > timer + millisecondsToNotify){
           Serial.println("LED Called 2");
         ledControl(true);
       }
+      }
+    
       t = millis();
     }
     
