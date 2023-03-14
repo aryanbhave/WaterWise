@@ -31,9 +31,9 @@ const char *password = "smit1234";
 char *bottleID = "mytest1";
 float measurement = 0.0;
 float prevMeasurement = 0.0;
-unsigned long millisecondsToNotify = 7200000; // 2hrs
-// unsigned long millisecondsToNotify = 30000 // for tesing 30secs once
-unsigned long timer = 0 
+// unsigned long millisecondsToNotify = 7200000; // 2hrs
+unsigned long millisecondsToNotify = 30000; // for tesing 30secs once
+unsigned long timer = 0;
 
 // pins:
 const int HX711_dout = 4; // mcu > HX711 dout pin
@@ -122,12 +122,14 @@ void loop()
           prevMeasurement = measurement;
           callWeb2(diff);
           timer = millis();
-          ledControl(false)
+          Serial.println("LED Called");
+          ledControl(false);
         }
         // callWeb2();
       }
       if(millis() > timer + millisecondsToNotify){
-        ledControl(true)
+          Serial.println("LED Called 2");
+        ledControl(true);
       }
       t = millis();
     }
@@ -206,6 +208,6 @@ void ledControl(bool setCondition){
    if(setCondition){
     digitalWrite(27, HIGH);
    }else{
-    digitalWrite(27, LOW)
+    digitalWrite(27, LOW);
    } 
 }
