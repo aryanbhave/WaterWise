@@ -49,7 +49,7 @@ def data(request):
     username = request.user.username
     bottles = bottlesDB.objects.all().filter(username=username)
     loggingData = loggerDB.objects.all().filter(
-        bottleID=bottles[0].bottleID).order_by('timeStamp')
+        bottleID=bottles[0].bottleID).order_by('-timeStamp')
     data = []
     waterConsumed = decimal.Decimal()
     pst_tz = datetime.timezone(datetime.timedelta(hours=-7))
