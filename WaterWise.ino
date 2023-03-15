@@ -26,8 +26,8 @@
 #include <EEPROM.h>
 #endif
 
-const char *ssid = "Smit's Pixel 7";
-const char *password = "smit1234";
+const char *ssid = "Apt4308";
+const char *password = "wifi#4308";
 char *bottleID = "mytest1";
 float measurement = 0.0;
 float prevMeasurement = 0.0;
@@ -111,13 +111,13 @@ void loop()
       if (measurement > 50.0 && measurement < 2500.0)
       {
         // Water Got Refilled
-        if (measurement - prevMeasurement >= 20.0)
+        if (measurement - prevMeasurement >= 50.0)
         {
           prevMeasurement = measurement;
           timer = millis();
         }
         // Water used
-        else if (prevMeasurement - measurement >= 20.0)
+        else if (prevMeasurement - measurement >= 50.0)
         {
           float diff = prevMeasurement - measurement;
           prevMeasurement = measurement;
