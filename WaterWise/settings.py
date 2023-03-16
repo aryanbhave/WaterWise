@@ -147,7 +147,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_PORT = 465 # or 587
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'waterwise-noreply@razlator.online'
-EMAIL_HOST_PASSWORD = 'LFb&C##8&R?7!JtB'
-DEFAULT_FROM_EMAIL = 'waterwise-noreply@razlator.online'
+EMAIL_HOST_USER = 'no-reply@waterwise315.online'
+EMAIL_HOST_PASSWORD = '3qi9YkdM?z6d7ENa'
+DEFAULT_FROM_EMAIL = 'no-reply@waterwise315.online'
 
